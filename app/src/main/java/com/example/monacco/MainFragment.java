@@ -89,7 +89,7 @@ public class MainFragment extends Fragment {
         list.add(f1);
         list.add(f2);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(list);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(list, getResources());
         viewPager2.setAdapter(adapter);
     }
 

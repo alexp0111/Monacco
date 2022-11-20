@@ -38,13 +38,13 @@ public class KeyFragment {
 
     public void setUpPieChart(PieChart pieChart){
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColor(ContextCompat.getColor(context, R.color.gray_700));
+        pieChart.setHoleColor(ContextCompat.getColor(context, R.color.gray_800));
         pieChart.setDrawEntryLabels(false);
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
 
-        pieChart.setCenterText("800 P");
+        pieChart.setCenterText("1100 ₽");
         pieChart.setCenterTextColor(Color.WHITE);
         pieChart.setCenterTextSize(32);
 
@@ -61,9 +61,9 @@ public class KeyFragment {
 
     public void loadEarnData(PieChart pieChart) {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(9000, "Job"));
-        entries.add(new PieEntry(85, "gift"));
-        entries.add(new PieEntry(700, "incognito"));
+        entries.add(new PieEntry(5000, "Job"));
+        entries.add(new PieEntry(2000, "gift"));
+        entries.add(new PieEntry(4000, "incognito"));
 
         ArrayList<Integer> colors = new ArrayList<>();
         for (int color: ColorTemplate.MATERIAL_COLORS) {

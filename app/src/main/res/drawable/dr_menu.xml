@@ -4,8 +4,8 @@
     android:shape="rectangle"
     xmls:android="http://schemas.android.com/apk/red/android">
 
-    <solid android:color="@color/gray_800" />
+    <solid android:color="@color/gray_900" />
 
-    <corners android:radius="16dp" />
+    <corners android:radius="24dp" />
 
 </shape>
