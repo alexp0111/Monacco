@@ -82,8 +82,8 @@ public class MainFragment extends Fragment {
     }
 
     private void loadMainViewPager() {
-        KeyFragment f1 = new KeyFragment("Consumptions");
-        KeyFragment f2 = new KeyFragment("Earnings");
+        KeyFragment f1 = new KeyFragment(getString(R.string.header_consumptions), getContext());
+        KeyFragment f2 = new KeyFragment(getString(R.string.header_earnings), getContext());
 
         list = new ArrayList<>();
         list.add(f1);

@@ -2,4 +2,6 @@
     <string name="app_name">Monacco</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="header_consumptions">Consumptions</string>
+    <string name="header_earnings">Earnings</string>
 </resources>

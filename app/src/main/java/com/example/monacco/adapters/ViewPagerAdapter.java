@@ -1,5 +1,6 @@
 package com.example.monacco.adapters;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.monacco.KeyFragment;
 import com.example.monacco.R;
+import com.github.mikephil.charting.charts.PieChart;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyViewHolder> {
     private ArrayList<KeyFragment> list;
@@ -30,7 +33,12 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String header = list.get(position).getHeader();
+        KeyFragment k = list.get(position);
+
+        String header = k.getHeader();
+        k.setUpPieChart(holder.pieChart);
+        k.loadEarnData(holder.pieChart);
+
         holder.txt.setText(header);
     }
 
@@ -41,11 +49,13 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView txt;
+        public PieChart pieChart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txt = itemView.findViewById(R.id.item_sub_add_header_txt);
+            pieChart = itemView.findViewById(R.id.pie_chart);
         }
     }
 }
