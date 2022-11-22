@@ -44,85 +44,26 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
         k.setUpPieChart(holder.pieChart);
         k.loadEarnData(holder.pieChart);
 
-        holder.pointer_day.setOnClickListener(view -> {
-            holder.pointer_day.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
-            holder.pointer_day.setTextColor(Color.WHITE);
-            holder.pointer_day.setElevation(6f);
-            clearMenu("day", holder);
-        });
-        holder.pointer_week.setOnClickListener(view -> {
-            holder.pointer_week.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
-            holder.pointer_week.setTextColor(Color.WHITE);
-            holder.pointer_week.setElevation(6f);
-            clearMenu("week", holder);
-        });
-        holder.pointer_month.setOnClickListener(view -> {
-            holder.pointer_month.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
-            holder.pointer_month.setTextColor(Color.WHITE);
-            holder.pointer_month.setElevation(6f);
-            clearMenu("month", holder);
-        });
-        holder.pointer_year.setOnClickListener(view -> {
-            holder.pointer_year.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
-            holder.pointer_year.setTextColor(Color.WHITE);
-            holder.pointer_year.setElevation(6f);
-            clearMenu("year", holder);
-        });
+        for (int i = 0; i < holder.dots.size(); i++) {
+            TextView currentTextView = holder.dots.get(i);
+            currentTextView.setOnClickListener(view -> {
+                currentTextView.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
+                currentTextView.setTextColor(Color.WHITE);
+                currentTextView.setElevation(6f);
+                clearMenu(currentTextView.getText().toString(), holder);
+            });
+        }
 
         holder.txt.setText(header);
     }
 
     private void clearMenu(String key, MyViewHolder holder) {
-        switch (key){
-            case "day":{
-                holder.pointer_week.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_week.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_week.setElevation(0);
-                holder.pointer_month.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_month.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_month.setElevation(0);
-                holder.pointer_year.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_year.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_year.setElevation(0);
-                break;
+        for (int i = 0; i < holder.dots.size(); i++) {
+            if (!holder.dots.get(i).getText().toString().equals(key)) {
+                holder.dots.get(i).setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
+                holder.dots.get(i).setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
+                holder.dots.get(i).setElevation(0);
             }
-            case "week":{
-                holder.pointer_day.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_day.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_day.setElevation(0);
-                holder.pointer_month.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_month.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_month.setElevation(0);
-                holder.pointer_year.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_year.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_year.setElevation(0);
-                break;
-            }
-            case "month":{
-                holder.pointer_day.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_day.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_day.setElevation(0);
-                holder.pointer_week.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_week.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_week.setElevation(0);
-                holder.pointer_year.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_year.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_year.setElevation(0);
-                break;
-            }
-            case "year":{
-                holder.pointer_day.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_day.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_day.setElevation(0);
-                holder.pointer_week.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_week.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_week.setElevation(0);
-                holder.pointer_month.setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
-                holder.pointer_month.setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.pointer_month.setElevation(0);
-                break;
-            }
-            default: break;
         }
     }
 
@@ -134,20 +75,17 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView txt;
         public PieChart pieChart;
-        public TextView pointer_day;
-        public TextView pointer_week;
-        public TextView pointer_month;
-        public TextView pointer_year;
+        public ArrayList<TextView> dots = new ArrayList<>();
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txt = itemView.findViewById(R.id.item_sub_add_header_txt);
             pieChart = itemView.findViewById(R.id.pie_chart);
-            pointer_day = itemView.findViewById(R.id.menu_day);
-            pointer_week = itemView.findViewById(R.id.menu_week);
-            pointer_month = itemView.findViewById(R.id.menu_month);
-            pointer_year = itemView.findViewById(R.id.menu_year);
+            dots.add(itemView.findViewById(R.id.menu_day));
+            dots.add(itemView.findViewById(R.id.menu_week));
+            dots.add(itemView.findViewById(R.id.menu_month));
+            dots.add(itemView.findViewById(R.id.menu_year));
         }
     }
 }
