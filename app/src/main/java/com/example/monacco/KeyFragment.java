@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.monacco.adapters.CategoriesAdapter;
+import com.example.monacco.helpclasses.MoneyCategory;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -41,7 +43,7 @@ public class KeyFragment {
         this.pieChart = pieChart;
     }
 
-    public void setUpPieChart() {
+    public void setUpPieChart(String value) {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(ContextCompat.getColor(context, R.color.gray_800));
         pieChart.setDrawEntryLabels(false);
@@ -49,12 +51,12 @@ public class KeyFragment {
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
 
-        pieChart.setCenterText("1100 ₽");
+        pieChart.setCenterText(value + " ₽");
         pieChart.setCenterTextColor(Color.WHITE);
-        pieChart.setCenterTextSize(32);
+        pieChart.setCenterTextSize(24);
 
-        pieChart.setHoleRadius(60);
-        pieChart.setTransparentCircleRadius(66);
+        pieChart.setHoleRadius(56);
+        pieChart.setTransparentCircleRadius(62);
 
         Legend l = pieChart.getLegend();
         //l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -88,13 +90,14 @@ public class KeyFragment {
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 
-    public void getPieData(String key) {
+    public CategoriesAdapter getPieData(String key) {
         switch (key) {
             case "D": {
                 ArrayList<PieEntry> entries = new ArrayList<>();
                 entries.add(new PieEntry(5000, "Job"));
                 entries.add(new PieEntry(2000, "gift"));
                 entries.add(new PieEntry(4000, "incognito"));
+                setUpPieChart("1100");
                 loadEarnData(entries);
                 break;
             }
@@ -103,6 +106,7 @@ public class KeyFragment {
                 entries.add(new PieEntry(1000, "Job"));
                 entries.add(new PieEntry(7000, "gift"));
                 entries.add(new PieEntry(4000, "incognito"));
+                setUpPieChart("9600");
                 loadEarnData(entries);
                 break;
             }
@@ -111,6 +115,7 @@ public class KeyFragment {
                 entries.add(new PieEntry(1000, "Job"));
                 entries.add(new PieEntry(3000, "gift"));
                 entries.add(new PieEntry(7000, "incognito"));
+                setUpPieChart("69870");
                 loadEarnData(entries);
                 break;
             }
@@ -119,11 +124,19 @@ public class KeyFragment {
                 entries.add(new PieEntry(40000, "Job"));
                 entries.add(new PieEntry(10000, "gift"));
                 entries.add(new PieEntry(10000, "incognito"));
+                setUpPieChart("547900");
                 loadEarnData(entries);
                 break;
             }
         }
 
+        ArrayList<MoneyCategory> list = new ArrayList<>();
+        list.add(new MoneyCategory(R.color.red_300, "Еда", 1000));
+        list.add(new MoneyCategory(R.color.green_300, "Музыка", 4799));
+        list.add(new MoneyCategory(R.color.light_blue_600, "Учеба", 9000));
+        list.add(new MoneyCategory(R.color.orange_700, "Спорт", 4536));
+
+        return new CategoriesAdapter(list, context.getResources());
     }
 
     public String getHeader() {

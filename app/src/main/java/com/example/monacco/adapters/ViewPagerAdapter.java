@@ -1,5 +1,6 @@
 package com.example.monacco.adapters;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.monacco.KeyFragment;
@@ -21,11 +23,11 @@ import java.util.zip.Inflater;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyViewHolder> {
     private ArrayList<KeyFragment> list;
-    private Resources res;
+    private Context mContext;
 
-    public ViewPagerAdapter(ArrayList<KeyFragment> list, Resources res) {
+    public ViewPagerAdapter(ArrayList<KeyFragment> list, Context mContext) {
         this.list = list;
-        this.res = res;
+        this.mContext = mContext;
     }
 
 
@@ -41,15 +43,15 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
         KeyFragment k = list.get(position);
 
         k.setUpPieChart(holder.pieChart);
-        String header = k.getHeader();
-        k.setUpPieChart();
+        holder.txt.setText(k.getHeader());
+        k.setUpPieChart("1100");
         k.getPieData("D");
 
         for (int i = 0; i < holder.dots.size(); i++) {
             TextView currentTextView = holder.dots.get(i);
             currentTextView.setOnClickListener(view -> {
                 // Menu correcting
-                currentTextView.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
+                currentTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.dr_orange, null));
                 currentTextView.setTextColor(Color.WHITE);
                 currentTextView.setElevation(6f);
                 clearMenu(currentTextView.getText().toString(), holder);
@@ -59,14 +61,16 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
             });
         }
 
-        holder.txt.setText(header);
+        CategoriesAdapter adapter = k.getPieData(holder.dots.get(0).getText().toString());;
+        holder.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        holder.recyclerView.setAdapter(adapter);
     }
 
     private void clearMenu(String key, MyViewHolder holder) {
         for (int i = 0; i < holder.dots.size(); i++) {
             if (!holder.dots.get(i).getText().toString().equals(key)) {
-                holder.dots.get(i).setBackgroundColor(ResourcesCompat.getColor(res, R.color.gray_900, null));
-                holder.dots.get(i).setTextColor(ResourcesCompat.getColor(res, R.color.gray_800, null));
+                holder.dots.get(i).setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.gray_900, null));
+                holder.dots.get(i).setTextColor(ResourcesCompat.getColor(mContext.getResources(), R.color.gray_800, null));
                 holder.dots.get(i).setElevation(0);
             }
         }
@@ -81,6 +85,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
         public TextView txt;
         public PieChart pieChart;
         public ArrayList<TextView> dots = new ArrayList<>();
+        public RecyclerView recyclerView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +96,8 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
             dots.add(itemView.findViewById(R.id.menu_week));
             dots.add(itemView.findViewById(R.id.menu_month));
             dots.add(itemView.findViewById(R.id.menu_year));
+
+            recyclerView = itemView.findViewById(R.id.item_sub_add_rv);
         }
     }
 }

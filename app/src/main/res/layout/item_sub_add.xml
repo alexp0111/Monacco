@@ -41,8 +41,8 @@
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pie_chart"
-                android:layout_width="256dp"
-                android:layout_height="256dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_menu"
@@ -119,6 +119,13 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_sub_add_rv"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/pie_chart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="16dp"
+                android:layout_height="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
