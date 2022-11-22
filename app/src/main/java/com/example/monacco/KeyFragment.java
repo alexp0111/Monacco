@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class KeyFragment {
 
     private String header = "sww";
+    private PieChart pieChart;
     private Context context;
 
 
@@ -37,6 +38,10 @@ public class KeyFragment {
     }
 
     public void setUpPieChart(PieChart pieChart){
+        this.pieChart = pieChart;
+    }
+
+    public void setUpPieChart() {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(ContextCompat.getColor(context, R.color.gray_800));
         pieChart.setDrawEntryLabels(false);
@@ -59,17 +64,12 @@ public class KeyFragment {
         l.setEnabled(false);
     }
 
-    public void loadEarnData(PieChart pieChart) {
-        ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(5000, "Job"));
-        entries.add(new PieEntry(2000, "gift"));
-        entries.add(new PieEntry(4000, "incognito"));
-
+    public void loadEarnData(ArrayList<PieEntry> entries) {
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color: ColorTemplate.MATERIAL_COLORS) {
+        for (int color : ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
-        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+        for (int color : ColorTemplate.VORDIPLOM_COLORS) {
             colors.add(color);
         }
 
@@ -88,7 +88,42 @@ public class KeyFragment {
         pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 
-    private void loadConsData() {
+    public void getPieData(String key) {
+        switch (key) {
+            case "D": {
+                ArrayList<PieEntry> entries = new ArrayList<>();
+                entries.add(new PieEntry(5000, "Job"));
+                entries.add(new PieEntry(2000, "gift"));
+                entries.add(new PieEntry(4000, "incognito"));
+                loadEarnData(entries);
+                break;
+            }
+            case "W": {
+                ArrayList<PieEntry> entries = new ArrayList<>();
+                entries.add(new PieEntry(1000, "Job"));
+                entries.add(new PieEntry(7000, "gift"));
+                entries.add(new PieEntry(4000, "incognito"));
+                loadEarnData(entries);
+                break;
+            }
+            case "M": {
+                ArrayList<PieEntry> entries = new ArrayList<>();
+                entries.add(new PieEntry(1000, "Job"));
+                entries.add(new PieEntry(3000, "gift"));
+                entries.add(new PieEntry(7000, "incognito"));
+                loadEarnData(entries);
+                break;
+            }
+            default: {
+                ArrayList<PieEntry> entries = new ArrayList<>();
+                entries.add(new PieEntry(40000, "Job"));
+                entries.add(new PieEntry(10000, "gift"));
+                entries.add(new PieEntry(10000, "incognito"));
+                loadEarnData(entries);
+                break;
+            }
+        }
+
     }
 
     public String getHeader() {

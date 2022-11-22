@@ -40,17 +40,22 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         KeyFragment k = list.get(position);
 
-        String header = k.getHeader();
         k.setUpPieChart(holder.pieChart);
-        k.loadEarnData(holder.pieChart);
+        String header = k.getHeader();
+        k.setUpPieChart();
+        k.getPieData("D");
 
         for (int i = 0; i < holder.dots.size(); i++) {
             TextView currentTextView = holder.dots.get(i);
             currentTextView.setOnClickListener(view -> {
+                // Menu correcting
                 currentTextView.setBackground(ResourcesCompat.getDrawable(res, R.drawable.dr_orange, null));
                 currentTextView.setTextColor(Color.WHITE);
                 currentTextView.setElevation(6f);
                 clearMenu(currentTextView.getText().toString(), holder);
+
+                // Data loading
+                k.getPieData(currentTextView.getText().toString());
             });
         }
 
