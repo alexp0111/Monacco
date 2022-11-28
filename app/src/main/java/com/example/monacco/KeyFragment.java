@@ -32,6 +32,7 @@ public class KeyFragment {
     private String header = "sww";
     private PieChart pieChart;
     private Context context;
+    private int currentDot;
 
 
     public KeyFragment(String header, Context context) {
@@ -141,5 +142,13 @@ public class KeyFragment {
 
     public String getHeader() {
         return header;
+    }
+
+    public int getCurrentDot() {
+        return currentDot;
+    }
+
+    public void setCurrentDot(int currentDot) {
+        this.currentDot = currentDot;
     }
 }

@@ -119,6 +119,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/item_period_choice"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:background="@drawable/dr_menu"
+                app:layout_constraintBottom_toBottomOf="@id/pie_chart"
+                app:layout_constraintEnd_toEndOf="@+id/pie_chart"
+                app:layout_constraintStart_toStartOf="@id/item_menu"
+                app:layout_constraintTop_toTopOf="@id/pie_chart" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/item_sub_add_rv"
                 android:layout_width="0dp"

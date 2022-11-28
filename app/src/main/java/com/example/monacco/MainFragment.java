@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -26,6 +28,8 @@ public class MainFragment extends Fragment {
 
     private ViewPager2 viewPager2;
     private ImageView dot1, dot2;
+    private ConstraintLayout add, sub, hat, operations, valueLandscape;
+    private LinearLayout dots;
     private ArrayList<KeyFragment> list;
 
     @Nullable
@@ -56,6 +60,26 @@ public class MainFragment extends Fragment {
                 super.onPageScrollStateChanged(state);
                 changeDotColor();
             }
+        });
+
+        add.setOnClickListener(view12 -> {
+            hat.setVisibility(View.GONE);
+            dots.setVisibility(View.GONE);
+            viewPager2.setVisibility(View.GONE);
+            valueLandscape.setVisibility(View.GONE);
+
+
+            operations.setVisibility(View.VISIBLE);
+        });
+
+        sub.setOnClickListener(view1 -> {
+            hat.setVisibility(View.VISIBLE);
+            dots.setVisibility(View.VISIBLE);
+            viewPager2.setVisibility(View.VISIBLE);
+            valueLandscape.setVisibility(View.VISIBLE);
+
+
+            operations.setVisibility(View.GONE);
         });
 
         return view;
@@ -98,5 +122,14 @@ public class MainFragment extends Fragment {
         viewPager2 = v.findViewById(R.id.view_pager_main);
         dot1 = v.findViewById(R.id.dot1);
         dot2 = v.findViewById(R.id.dot2);
+
+        add = v.findViewById(R.id.btn_main_add);
+        sub = v.findViewById(R.id.btn_main_sub);
+
+        hat = v.findViewById(R.id.toolbar_in_main);
+        dots = v.findViewById(R.id.ll_main_dots);
+
+        operations = v.findViewById(R.id.cl_operations);
+        valueLandscape = v.findViewById(R.id.toolbar_in_main_value);
     }
 }

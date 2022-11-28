@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,20 +47,29 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
         holder.txt.setText(k.getHeader());
         k.setUpPieChart("1100");
         k.getPieData("D");
+        k.setCurrentDot(0);
 
         for (int i = 0; i < holder.dots.size(); i++) {
             TextView currentTextView = holder.dots.get(i);
+            int finalI = i;
             currentTextView.setOnClickListener(view -> {
-                // Menu correcting
-                currentTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.dr_orange, null));
-                currentTextView.setTextColor(Color.WHITE);
-                currentTextView.setElevation(6f);
-                clearMenu(currentTextView.getText().toString(), holder);
+                if (k.getCurrentDot() == finalI){
+                    holder.cl.setVisibility(View.VISIBLE);
+                } else {
+                    // Menu correcting
+                    currentTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.dr_orange, null));
+                    currentTextView.setTextColor(Color.WHITE);
+                    currentTextView.setElevation(6f);
+                    clearMenu(currentTextView.getText().toString(), holder);
 
-                // Data loading
-                k.getPieData(currentTextView.getText().toString());
+                    // Data loading
+                    k.getPieData(currentTextView.getText().toString());
+                }
+                k.setCurrentDot(finalI);
             });
         }
+
+        holder.cl.setOnClickListener(view -> holder.cl.setVisibility(View.GONE));
 
         CategoriesAdapter adapter = k.getPieData(holder.dots.get(0).getText().toString());;
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -82,6 +92,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
+        public ConstraintLayout cl;
         public TextView txt;
         public PieChart pieChart;
         public ArrayList<TextView> dots = new ArrayList<>();
@@ -89,6 +100,8 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            cl = itemView.findViewById(R.id.item_period_choice);
 
             txt = itemView.findViewById(R.id.item_sub_add_header_txt);
             pieChart = itemView.findViewById(R.id.pie_chart);
