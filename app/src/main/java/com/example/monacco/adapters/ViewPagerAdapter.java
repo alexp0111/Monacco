@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.monacco.KeyFragment;
 import com.example.monacco.R;
 import com.github.mikephil.charting.charts.PieChart;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.transition.Hold;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
             int finalI = i;
             currentTextView.setOnClickListener(view -> {
                 if (k.getCurrentDot() == finalI){
-                    holder.cl.setVisibility(View.VISIBLE);
+                    k.openDatePicker();
                 } else {
                     // Menu correcting
                     currentTextView.setBackground(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.dr_orange, null));

@@ -1,18 +1,10 @@
 package com.example.monacco;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
 
 import com.example.monacco.adapters.CategoriesAdapter;
 import com.example.monacco.helpclasses.MoneyCategory;
@@ -24,6 +16,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.util.ArrayList;
 
@@ -138,6 +131,15 @@ public class KeyFragment {
         list.add(new MoneyCategory(R.color.orange_700, "Спорт", 4536));
 
         return new CategoriesAdapter(list, context.getResources());
+    }
+
+    public void openDatePicker(){
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Choose date");
+        builder.setTheme(R.style.MaterialCalendarTheme);
+        MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        materialDatePicker.show(((AppCompatActivity) context).getSupportFragmentManager(), "DATE_PICKER");
     }
 
     public String getHeader() {
