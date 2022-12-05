@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.monacco.adapters.ViewPagerAdapter;
@@ -28,7 +29,9 @@ public class MainFragment extends Fragment {
 
     private ViewPager2 viewPager2;
     private ImageView dot1, dot2;
-    private ConstraintLayout add, sub, hat, operations, valueLandscape;
+    private ImageView img_sub, img_back, img_add, img_done;
+    private ConstraintLayout add, sub, hat, valueLandscape;
+    private FragmentContainerView operations;
     private LinearLayout dots;
     private ArrayList<KeyFragment> list;
 
@@ -63,23 +66,51 @@ public class MainFragment extends Fragment {
         });
 
         add.setOnClickListener(view12 -> {
-            hat.setVisibility(View.GONE);
-            dots.setVisibility(View.GONE);
-            viewPager2.setVisibility(View.GONE);
-            valueLandscape.setVisibility(View.GONE);
+            if (img_add.getVisibility() == View.VISIBLE){
+                hat.setVisibility(View.GONE);
+                dots.setVisibility(View.GONE);
+                viewPager2.setVisibility(View.GONE);
+                valueLandscape.setVisibility(View.GONE);
 
+                operations.setVisibility(View.VISIBLE);
 
-            operations.setVisibility(View.VISIBLE);
+                img_add.setVisibility(View.GONE);
+                img_sub.setVisibility(View.GONE);
+                img_done.setVisibility(View.VISIBLE);
+                img_back.setVisibility(View.VISIBLE);
+            } else {
+                // Approving
+            }
         });
 
         sub.setOnClickListener(view1 -> {
-            hat.setVisibility(View.VISIBLE);
-            dots.setVisibility(View.VISIBLE);
-            viewPager2.setVisibility(View.VISIBLE);
-            valueLandscape.setVisibility(View.VISIBLE);
+            if (img_sub.getVisibility() == View.VISIBLE){
+                hat.setVisibility(View.GONE);
+                dots.setVisibility(View.GONE);
+                viewPager2.setVisibility(View.GONE);
+                valueLandscape.setVisibility(View.GONE);
+
+                operations.setVisibility(View.VISIBLE);
+
+                img_add.setVisibility(View.GONE);
+                img_sub.setVisibility(View.GONE);
+                img_done.setVisibility(View.VISIBLE);
+                img_back.setVisibility(View.VISIBLE);
+            } else {
+                // Going back
+                img_add.setVisibility(View.VISIBLE);
+                img_sub.setVisibility(View.VISIBLE);
+                img_done.setVisibility(View.GONE);
+                img_back.setVisibility(View.GONE);
+
+                hat.setVisibility(View.VISIBLE);
+                dots.setVisibility(View.VISIBLE);
+                viewPager2.setVisibility(View.VISIBLE);
+                valueLandscape.setVisibility(View.VISIBLE);
 
 
-            operations.setVisibility(View.GONE);
+                operations.setVisibility(View.GONE);
+            }
         });
 
         return view;
@@ -126,10 +157,15 @@ public class MainFragment extends Fragment {
         add = v.findViewById(R.id.btn_main_add);
         sub = v.findViewById(R.id.btn_main_sub);
 
+        img_add = v.findViewById(R.id.img_main_right_add);
+        img_sub = v.findViewById(R.id.img_main_left_sub);
+        img_back = v.findViewById(R.id.img_main_left_back);
+        img_done = v.findViewById(R.id.img_main_right_done);
+
         hat = v.findViewById(R.id.toolbar_in_main);
         dots = v.findViewById(R.id.ll_main_dots);
 
-        operations = v.findViewById(R.id.cl_operations);
+        operations = v.findViewById(R.id.fragment_container);
         valueLandscape = v.findViewById(R.id.toolbar_in_main_value);
     }
 }

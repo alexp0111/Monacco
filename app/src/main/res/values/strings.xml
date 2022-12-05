@@ -4,4 +4,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="header_consumptions">Consumptions</string>
     <string name="header_earnings">Earnings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
