@@ -17,6 +17,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.monacco.adapters.ViewPagerAdapter;
 import com.github.mikephil.charting.charts.PieChart;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -79,7 +81,7 @@ public class MainFragment extends Fragment {
                 img_done.setVisibility(View.VISIBLE);
                 img_back.setVisibility(View.VISIBLE);
             } else {
-                // Approving
+                Snackbar.make(getView(), "Sending data to DB ...", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
 
