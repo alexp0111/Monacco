@@ -14,6 +14,11 @@ public class MoneyCategory {
         this.value = value;
     }
 
+    public MoneyCategory(int color, String label) {
+        this.color = color;
+        this.label = label;
+    }
+
     public int getColor() {
         return color;
     }

@@ -72,7 +72,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
         holder.cl.setOnClickListener(view -> holder.cl.setVisibility(View.GONE));
 
-        CategoriesAdapter adapter = k.getPieData(holder.dots.get(0).getText().toString());;
+        CategoriesAdapter adapter = k.getPieData(holder.dots.get(0).getText().toString());
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         holder.recyclerView.setAdapter(adapter);
     }

@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.monacco.adapters.ViewPagerAdapter;
+import com.example.monacco.helpclasses.MoneyCategory;
 import com.github.mikephil.charting.charts.PieChart;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,6 +42,8 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        SubAddFragment fragment = (SubAddFragment) getChildFragmentManager().findFragmentByTag("custom_tag");
 
         initItems(view);
         loadMainViewPager();
@@ -81,7 +84,12 @@ public class MainFragment extends Fragment {
                 img_done.setVisibility(View.VISIBLE);
                 img_back.setVisibility(View.VISIBLE);
             } else {
-                Snackbar.make(getView(), "Sending data to DB ...", BaseTransientBottomBar.LENGTH_SHORT).show();
+                ArrayList<MoneyCategory> categories = fragment.getCategories();
+                String tmp = "";
+                for (int i = 0; i < categories.size(); i++) {
+                    tmp += categories.get(i).getLabel() + " ";
+                }
+                Snackbar.make(getView(), fragment.getValue().toString() + "  |||  " + tmp, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
         });
 
@@ -110,7 +118,7 @@ public class MainFragment extends Fragment {
                 viewPager2.setVisibility(View.VISIBLE);
                 valueLandscape.setVisibility(View.VISIBLE);
 
-
+                fragment.onStop();
                 operations.setVisibility(View.GONE);
             }
         });

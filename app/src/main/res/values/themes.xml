@@ -65,4 +65,8 @@
         <item name="colorSurface">@color/gray_900</item>
         <item name="colorOnSurface">@color/white</item>
     </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlActivated">@color/orange_700</item>
+    </style>
 </resources>

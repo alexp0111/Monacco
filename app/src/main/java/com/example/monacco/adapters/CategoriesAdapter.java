@@ -20,6 +20,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     private ArrayList<MoneyCategory> list;
     private Resources res;
+    private ArrayList<MoneyCategory> checkedItems = new ArrayList<>();
 
     public CategoriesAdapter(ArrayList<MoneyCategory> list, Resources res) {
         this.list = list;
@@ -38,12 +39,31 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         MoneyCategory category = list.get(position);
         holder.color.setImageResource(category.getColor());
         holder.label.setText(category.getLabel());
-        holder.value.setText(category.getValue() + " ₽");
+        if (category.getValue() != null) holder.value.setText(category.getValue() + " ₽");
+        else {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (holder.label.getCurrentTextColor() == res.getColor(R.color.white, null)){
+                        holder.label.setTextColor(res.getColor(R.color.gray_700, null));
+                        checkedItems.remove(category);
+                    }
+                    else {
+                        holder.label.setTextColor(res.getColor(R.color.white, null));
+                        checkedItems.add(category);
+                    }
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public ArrayList<MoneyCategory> getCheckedItems(){
+        return checkedItems;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
