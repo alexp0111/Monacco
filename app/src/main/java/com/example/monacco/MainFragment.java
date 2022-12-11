@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.OverScroller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.monacco.adapters.ViewPagerAdapter;
@@ -50,6 +53,10 @@ public class MainFragment extends Fragment {
 
         Log.d(TAG, "main");
 
+        View child = viewPager2.getChildAt(0);
+        if (child instanceof RecyclerView) {
+            child.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        }
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -70,8 +77,11 @@ public class MainFragment extends Fragment {
             }
         });
 
+        add.setClipToOutline(true);
+        sub.setClipToOutline(true);
+
         add.setOnClickListener(view12 -> {
-            if (img_add.getVisibility() == View.VISIBLE){
+            if (img_add.getVisibility() == View.VISIBLE) {
                 hat.setVisibility(View.GONE);
                 dots.setVisibility(View.GONE);
                 viewPager2.setVisibility(View.GONE);
@@ -94,7 +104,7 @@ public class MainFragment extends Fragment {
         });
 
         sub.setOnClickListener(view1 -> {
-            if (img_sub.getVisibility() == View.VISIBLE){
+            if (img_sub.getVisibility() == View.VISIBLE) {
                 hat.setVisibility(View.GONE);
                 dots.setVisibility(View.GONE);
                 viewPager2.setVisibility(View.GONE);

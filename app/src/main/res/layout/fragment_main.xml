@@ -108,10 +108,10 @@
         android:name="com.example.monacco.SubAddFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:tag="custom_tag"
         android:layout_margin="16dp"
         android:background="@drawable/dr_toolbar"
         android:elevation="6dp"
+        android:tag="custom_tag"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/cl_main_buttons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -140,6 +140,7 @@
             android:layout_height="64dp"
             android:background="@drawable/dr_sub"
             android:elevation="6dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toStartOf="@+id/btn_main_add"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -174,6 +175,7 @@
             android:background="@drawable/dr_add"
             android:clickable="true"
             android:elevation="6dp"
+            android:foreground="?android:attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_main_sub"
             app:layout_constraintTop_toTopOf="parent">

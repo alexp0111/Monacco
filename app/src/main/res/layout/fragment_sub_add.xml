@@ -42,15 +42,55 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fsa_cl_color"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="240dp"
         app:layout_constraintBottom_toTopOf="@+id/fsa_cl_numpad"
         app:layout_constraintTop_toBottomOf="@+id/fsa_cl_edt">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fsa_rv"
-            android:paddingHorizontal="16dp"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fsa_rv"
+                    app:layout_constraintBottom_toTopOf="@id/fsa_add_category"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:overScrollMode="never"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fsa_add_category"
+                    android:layout_width="48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/dr_menu"
+                    android:clickable="true"
+                    android:layout_marginTop="6dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fsa_rv">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_add_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -58,7 +98,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fsa_cl_numpad"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fsa_cl_color"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -67,15 +108,18 @@
             android:id="@+id/fsa_cl_1"
             android:layout_width="match_parent"
             android:layout_height="84dp"
+            android:layout_marginTop="14dp"
             app:layout_constraintBottom_toTopOf="@id/fsa_cl_2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/fsa_cd_0"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_1"
@@ -98,6 +142,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_2"
@@ -121,6 +166,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_3"
@@ -143,6 +189,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,6 +214,7 @@
             android:id="@+id/fsa_cl_2"
             android:layout_width="match_parent"
             android:layout_height="84dp"
+            app:layout_constraintTop_toBottomOf="@id/fsa_cl_1"
             app:layout_constraintBottom_toTopOf="@id/fsa_cl_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -176,6 +224,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_5"
@@ -198,6 +247,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_6"
@@ -221,6 +271,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_7"
@@ -243,10 +294,12 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/fsa_cd_6"
+
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -267,7 +320,8 @@
             android:id="@+id/fsa_cl_3"
             android:layout_width="match_parent"
             android:layout_height="84dp"
-            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/fsa_cl_2"
+            android:layout_marginBottom="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -277,6 +331,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_9"
@@ -299,6 +354,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_remove"
@@ -322,6 +378,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/fsa_cd_clear"
@@ -341,6 +398,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:backgroundTint="@color/gray_700"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
