@@ -35,11 +35,7 @@ public class MainFragment extends Fragment {
     private static final String TAG = "MainFragment";
 
     private ViewPager2 viewPager2;
-    private ImageView dot1, dot2;
-    private ImageView img_sub, img_back, img_add, img_done;
-    private ConstraintLayout add, sub, hat, valueLandscape;
-    private FragmentContainerView operations;
-    private LinearLayout dots;
+    private ImageView dot1, dot2, settings;
     private ArrayList<KeyFragment> list;
 
     @Nullable
@@ -80,18 +76,21 @@ public class MainFragment extends Fragment {
         ConstraintLayout add = main_activity.findViewById(R.id.btn_main_add);
         ConstraintLayout sub = main_activity.findViewById(R.id.btn_main_sub);
 
-        ImageView img_sub, img_back, img_add, img_done;
+        ImageView img_sub, img_back, img_add, img_done, img_arrow;
         img_add = main_activity.findViewById(R.id.img_main_right_add);
         img_sub = main_activity.findViewById(R.id.img_main_left_sub);
         img_back = main_activity.findViewById(R.id.img_main_left_back);
         img_done = main_activity.findViewById(R.id.img_main_right_done);
+        img_arrow = main_activity.findViewById(R.id.img_main_left_arrow);
 
 
         add.setOnClickListener(view2 -> {
             img_add.setVisibility(View.GONE);
             img_sub.setVisibility(View.GONE);
+            img_arrow.setVisibility(View.GONE);
             img_back.setVisibility(View.VISIBLE);
             img_done.setVisibility(View.VISIBLE);
+
 
             getParentFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new SubAddFragment()).commit();
@@ -99,11 +98,23 @@ public class MainFragment extends Fragment {
         sub.setOnClickListener(view3 -> {
             img_add.setVisibility(View.GONE);
             img_sub.setVisibility(View.GONE);
+            img_arrow.setVisibility(View.GONE);
             img_back.setVisibility(View.VISIBLE);
             img_done.setVisibility(View.VISIBLE);
 
             getParentFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new SubAddFragment()).commit();
+        });
+
+        settings.setOnClickListener(view1 -> {
+            img_add.setVisibility(View.GONE);
+            img_sub.setVisibility(View.GONE);
+            img_arrow.setVisibility(View.VISIBLE);
+            img_back.setVisibility(View.GONE);
+            img_done.setVisibility(View.VISIBLE);
+
+            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new SettingsFragment()).commit();
         });
 
         return view;
@@ -147,10 +158,7 @@ public class MainFragment extends Fragment {
         dot1 = v.findViewById(R.id.dot1);
         dot2 = v.findViewById(R.id.dot2);
 
-        hat = v.findViewById(R.id.toolbar_in_main);
-        dots = v.findViewById(R.id.ll_main_dots);
+        settings = v.findViewById(R.id.btn_main_settings);
 
-        //operations = v.findViewById(R.id.fragment_container);
-        valueLandscape = v.findViewById(R.id.toolbar_in_main_value);
     }
 }

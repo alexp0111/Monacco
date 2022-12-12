@@ -10,6 +10,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+// TODO: Settings
+//  1. Валюта
+//  2. Язык
+//  3. Удалить данные
+//  4. Конфигурация счетов -> Название + валюта
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
