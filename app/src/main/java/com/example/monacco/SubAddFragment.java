@@ -3,6 +3,7 @@ package com.example.monacco;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EdgeEffect;
+import android.widget.ImageView;
 
 import com.example.monacco.adapters.CategoriesAdapter;
 import com.example.monacco.helpclasses.MoneyCategory;
@@ -45,6 +47,7 @@ public class SubAddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sub_add, container, false);
+        AppCompatActivity main_activity = (MainActivity) getActivity();
 
         initItems(view);
 
@@ -75,8 +78,6 @@ public class SubAddFragment extends Fragment {
             editText.setText(value.toString());
         });
 
-        addCategory.setOnClickListener(view1 -> getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new NewCategoryAddingFragment()).commit());
-
         //
 
         ArrayList<MoneyCategory> list = new ArrayList<>();
@@ -89,6 +90,44 @@ public class SubAddFragment extends Fragment {
         adapter = new CategoriesAdapter(list, getContext().getResources());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+
+        //
+
+        ConstraintLayout add = main_activity.findViewById(R.id.btn_main_add);
+        ConstraintLayout sub = main_activity.findViewById(R.id.btn_main_sub);
+
+        ImageView img_sub, img_back, img_add, img_done, img_arrow;
+        img_add = main_activity.findViewById(R.id.img_main_right_add);
+        img_sub = main_activity.findViewById(R.id.img_main_left_sub);
+        img_back = main_activity.findViewById(R.id.img_main_left_back);
+        img_done = main_activity.findViewById(R.id.img_main_right_done);
+        img_arrow = main_activity.findViewById(R.id.img_main_left_arrow);
+
+        addCategory.setOnClickListener(view1 -> {
+            img_back.setVisibility(View.GONE);
+            img_arrow.setVisibility(View.VISIBLE);
+
+            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new NewCategoryAddingFragment()).commit();
+        });
+
+        add.setOnClickListener(view14 -> {
+            img_add.setVisibility(View.VISIBLE);
+            img_sub.setVisibility(View.VISIBLE);
+            img_back.setVisibility(View.GONE);
+            img_done.setVisibility(View.GONE);
+            getParentFragmentManager().beginTransaction().
+                    replace(R.id.fragment_container, new MainFragment()).commit();
+        });
+
+        sub.setOnClickListener(view15 -> {
+            img_add.setVisibility(View.VISIBLE);
+            img_sub.setVisibility(View.VISIBLE);
+            img_back.setVisibility(View.GONE);
+            img_done.setVisibility(View.GONE);
+            getParentFragmentManager().beginTransaction().
+                    replace(R.id.fragment_container, new MainFragment()).commit();
+        });
+
         return view;
     }
 
