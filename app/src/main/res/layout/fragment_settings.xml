@@ -41,7 +41,6 @@
             android:background="@drawable/dr_orange"
             android:elevation="6dp"
             android:gravity="center"
-            android:paddingHorizontal="12dp"
             android:text="₽"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -57,7 +56,6 @@
             android:layout_marginEnd="8dp"
             android:background="@color/gray_900"
             android:gravity="center"
-            android:paddingHorizontal="12dp"
             android:text="$"
             android:textColor="@color/gray_800"
             android:textSize="18sp"
@@ -72,7 +70,6 @@
             android:layout_height="32dp"
             android:background="@color/gray_900"
             android:gravity="center"
-            android:paddingHorizontal="12dp"
             android:text="€"
             android:textColor="@color/gray_800"
             android:textSize="18sp"
@@ -179,7 +176,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
-                    android:paddingHorizontal="16dp"
                     app:layout_constraintBottom_toTopOf="@id/fst_add_acc"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -215,26 +211,26 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/fst_cd_del"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="24dp"
-        app:layout_constraintTop_toBottomOf="@id/fst_cl_for_rv"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:clickable="true"
+        android:layout_margin="24dp"
         android:backgroundTint="@color/gray_700"
+        android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="18dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fst_cl_for_rv">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginHorizontal="18dp"
+            android:gravity="center"
             android:text="Delete all data"
             android:textColor="@color/red_300"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </androidx.cardview.widget.CardView>
 
