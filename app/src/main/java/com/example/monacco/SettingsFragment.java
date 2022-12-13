@@ -76,11 +76,13 @@ public class SettingsFragment extends Fragment {
         });
 
         list = new ArrayList<>();
-        list.add(new Account("Main", 999, "₽"));
+        list.add(new Account(getResources().getString(R.string.main_acc), 999, "₽"));
 
         adapter = new AccountAdapter(list, getContext().getResources());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+
+        addAcc.setClipToOutline(true);
 
         addAcc.setOnClickListener(view1 -> {
             mdBuilder = new MaterialAlertDialogBuilder(getContext());

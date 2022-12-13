@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Monacco</string>
     <string name="header_consumptions">Расходы</string>
     <string name="header_earnings">Доходы</string>
-    <string name="main_acc">Main</string>
+    <string name="main_acc">Основной</string>
+    <string name="calendar_label">Выбор даты</string>
+    <string name="currency">Валюта</string>
+    <string name="language">Язык</string>
+    <string name="rus">РУС</string>
+    <string name="eng">АНГ</string>
+    <string name="accounts">Счета</string>
+    <string name="delete_all_data">Удалить все данные</string>
+    <string name="category_name">Название категории</string>
 </resources>

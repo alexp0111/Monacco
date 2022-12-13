@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Monacco</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="header_consumptions">Consumptions</string>
     <string name="header_earnings">Earnings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_acc">Main</string>
+    <string name="calendar_label">Choose date</string>
+    <string name="currency">Currency</string>
+    <string name="language">Language</string>
+    <string name="rus">RUS</string>
+    <string name="eng">ENG</string>
+    <string name="accounts">Accounts</string>
+    <string name="delete_all_data">Delete all data</string>
+    <string name="category_name">Category name</string>
 </resources>

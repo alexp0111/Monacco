@@ -135,7 +135,7 @@ public class KeyFragment {
 
     public void openDatePicker(){
         MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Choose date");
+        builder.setTitleText(R.string.calendar_label);
         builder.setTheme(R.style.MaterialCalendarTheme);
         MaterialDatePicker<Long> materialDatePicker = builder.build();
 
